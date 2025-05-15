@@ -19,13 +19,13 @@ class LoginPage extends StatelessWidget {
              CustomTextField(hintText: 'Enter your Email :',keyboardType: TextInputType.emailAddress),
             const SizedBox(height: 30),
             CustomTextField(hintText:'Enter your Password :',obscureText: true,)
-           , SizedBox(height: 30),
-           CustomElevatedButton(data: 'Sign in'),
+           ,const SizedBox(height: 30),
+          const CustomElevatedButton(data: 'Sign in'),
            Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("Don't have an account ?",style: TextStyle(fontSize:18 ),),
-              CustomTextButton(data:'Sign up' ,onPressed: (){})
+            const  Text("Don't have an account ?",style: TextStyle(fontSize:18 ),),
+              CustomTextButton(data:'Sign up' ,onPressed: (){Navigator.pushNamed(context,'/register');})
             ],
            )
             ],

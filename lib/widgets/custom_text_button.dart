@@ -8,7 +8,7 @@ final void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: (){}, 
+      onPressed:onPressed, 
     child: Text(data,style: TextStyle(color: Colors.black, fontSize:20)));
   }
 }

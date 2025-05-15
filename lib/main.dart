@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:plants_e_commerce/screens/home_page.dart';
 import 'package:plants_e_commerce/screens/login_page.dart';
+import 'package:plants_e_commerce/screens/register_page.dart';
+
 
 void main() {
   runApp(const PlantsApp());
@@ -12,7 +15,13 @@ class PlantsApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+       theme: ThemeData(useMaterial3: false),
+      routes: {
+        '/login':(context)=>LoginPage(),
+        '/register':(context)=>RegisterPage(),
+        '/home':(context)=>HomePage()
+      },
     debugShowCheckedModeBanner: false, 
-   home:LoginPage() );
+   initialRoute: '/home');
   }
 }
