@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor:KPrimaryColor,
-          title: Text("Home"),
+          title:const Text("Home"),
           actions: [
             Row(
               children: [
@@ -29,20 +29,20 @@ class HomePage extends StatelessWidget {
       right:30,
         child: Container( 
           alignment: Alignment.center,
-        padding: EdgeInsets.all(4),
-          decoration: BoxDecoration(
+        padding:const EdgeInsets.all(4),
+          decoration:const BoxDecoration(
             shape: BoxShape.circle,
             color: Color.fromARGB(211,164,255, 193)
           ),
         
-          child:   Center(child: Text('8',style: TextStyle(fontSize: 18))),),
+          child: const  Center(child: Text('8',style: TextStyle(fontSize: 18))),),
       ),
-       IconButton(onPressed:(){} , icon:Icon(Icons.add_shopping_cart))
+       IconButton(onPressed:(){} , icon:const  Icon(Icons.add_shopping_cart))
       
       ]
       )
-        , Padding(
-          padding: const EdgeInsets.only(right: 10),
+        ,const Padding(
+          padding: EdgeInsets.only(right: 10),
           child: Text('\$ 9999',style: TextStyle(fontSize: 18)),
         ),
         ],
@@ -50,10 +50,10 @@ class HomePage extends StatelessWidget {
       
               ],
             )
-         ,drawer: CustomDrawer(),
+         ,drawer:const CustomDrawer(),
          body: GridView.builder(
 itemCount: plantList.length,
-          gridDelegate:SliverGridDelegateWithFixedCrossAxisCount(
+          gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount:2,
             crossAxisSpacing: 10,
             childAspectRatio: 2/2,
@@ -72,11 +72,11 @@ itemCount: plantList.length,
                  
                   footer: GridTileBar(
                      backgroundColor:KPrimaryColor.withOpacity(.6),
-                    leading: Text('\$ 12.55'),
-                    title: Text(""),
+                    leading:const Text('\$ 12.55'),
+                    title:const Text(""),
                     trailing: IconButton(
                       onPressed:(){}, 
-                      icon:Icon(Icons.add,color:Colors.black,)),
+                      icon:const Icon(Icons.add,color:Colors.black,)),
                   ),
                   child:Stack(
                   children: [
