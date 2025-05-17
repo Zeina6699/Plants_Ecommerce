@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:plants_e_commerce/Provider/cart.dart';
 import 'package:plants_e_commerce/screens/details_page.dart';
 import 'package:plants_e_commerce/screens/home_page.dart';
 import 'package:plants_e_commerce/screens/login_page.dart';
 import 'package:plants_e_commerce/screens/register_page.dart';
-
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const PlantsApp());
@@ -15,15 +16,20 @@ class PlantsApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-       theme: ThemeData(useMaterial3: false),
-      routes: {
-        '/login':(context)=>const LoginPage(),
-        '/register':(context)=>const RegisterPage(),
-        '/home':(context)=>const HomePage(),
-        '/details':(context)=> DetailsPage(),
+    return ChangeNotifierProvider(
+      create: (context) {
+        return Cart();
       },
-    debugShowCheckedModeBanner: false, 
-   initialRoute: '/details');
+      child: MaterialApp(
+         theme: ThemeData(useMaterial3: false),
+        routes: {
+          '/login':(context)=>const LoginPage(),
+          '/register':(context)=>const RegisterPage(),
+          '/home':(context)=>HomePage(),
+          '/details':(context)=> DetailsPage(),
+        },
+      debugShowCheckedModeBanner: false, 
+         initialRoute: '/home'),
+    );
   }
 }

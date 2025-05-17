@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:plants_e_commerce/Models/plants_model.dart';
+import 'package:plants_e_commerce/Provider/cart.dart';
 import 'package:plants_e_commerce/constants.dart';
 import 'package:plants_e_commerce/data/data.dart';
 import 'package:plants_e_commerce/widgets/custom_drawer.dart';
 import 'package:plants_e_commerce/widgets/custom_list_tile.dart';
 import 'package:plants_e_commerce/widgets/custom_user_drawer_header.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+   HomePage({super.key});
+  PlantsModel? plant;
 
   @override
   Widget build(BuildContext context) {
@@ -14,42 +18,54 @@ class HomePage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor:KPrimaryColor,
-          title:const Text("Home"),
+          title:Consumer<Cart>(builder:(context,test,child){
+            return Text('${test.myName}');
+          }),
+          //const Text("Home"),
           actions: [
-            Row(
-              children: [
-      
-       //الستاك مشان نخلي ال8 فوق الايقونة           
-      Stack(
-        children: [
-      //الكونتستر مشان نخلي 
-      //شكلو دائري
-     Positioned(
-      bottom: 22,
-      right:30,
-        child: Container( 
-          alignment: Alignment.center,
-        padding:const EdgeInsets.all(4),
-          decoration:const BoxDecoration(
-            shape: BoxShape.circle,
-            color: Color.fromARGB(211,164,255, 193)
-          ),
-        
-          child: const  Center(child: Text('8',style: TextStyle(fontSize: 18))),),
-      ),
-       IconButton(onPressed:(){} , icon:const  Icon(Icons.add_shopping_cart))
-      
-      ]
-      )
-        ,const Padding(
+            Consumer<Cart>(
+        builder: (context,ccc,child){
+          return Row(
+                children: [
+                    
+                     //الستاك مشان نخلي ال8 فوق الايقونة           
+                    Stack(
+                        children: [
+                      //الكونتستر مشان نخلي 
+                      //شكلو دائري
+               Positioned(
+                      bottom: 22,
+                      right:30,
+                        child: Container( 
+              alignment: Alignment.center,
+                        padding:const EdgeInsets.all(4),
+              decoration:const BoxDecoration(
+                shape: BoxShape.circle,
+                color: Color.fromARGB(211,164,255, 193)
+              ),
+                        
+              child: Center(child: Text('${ccc.selectedPlants.length}'
+               // '0'
+                ,style: TextStyle(fontSize: 18))),),
+                      ),
+                       IconButton(onPressed:(){} , icon:const  Icon(Icons.add_shopping_cart))
+                      
+                      ]
+                      )
+                     
+            
+        , Padding(
           padding: EdgeInsets.only(right: 10),
-          child: Text('\$ 9999',style: TextStyle(fontSize: 18)),
+          child: Text('${ccc.price}',
+            
+         //   '\$ 0',
+            style: TextStyle(fontSize: 18)),
         ),
         ],
-      ),
       
-              ],
-            )
+      
+         ); }
+          )  ])
          ,drawer:const CustomDrawer(),
          body: GridView.builder(
 itemCount: plantList.length,
@@ -66,7 +82,7 @@ itemCount: plantList.length,
               padding: const EdgeInsets.only(top: 20),
               child: GestureDetector(
                 onTap: (){
-
+Navigator.pushNamed(context,'/details',arguments:plantList[index]);
                 },
                 child: GridTile(
                  
@@ -74,9 +90,14 @@ itemCount: plantList.length,
                      backgroundColor:KPrimaryColor.withOpacity(.6),
                     leading:const Text('\$ 12.55'),
                     title:const Text(""),
-                    trailing: IconButton(
-                      onPressed:(){}, 
-                      icon:const Icon(Icons.add,color:Colors.black,)),
+                    trailing: Consumer<Cart>(
+                      builder: (context,cc,child){
+                        return IconButton(
+                        onPressed:(){
+                          cc.add(plantList[index]);
+                        }, 
+                        icon:const Icon(Icons.add,color:Colors.black,));
+           } )
                   ),
                   child:Stack(
                   children: [

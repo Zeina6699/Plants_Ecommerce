@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:plants_e_commerce/Models/plants_model.dart';
+import 'package:plants_e_commerce/Provider/cart.dart';
 import 'package:plants_e_commerce/constants.dart';
+import 'package:provider/provider.dart';
 
 class DetailsPage extends StatefulWidget {
+
+ 
    DetailsPage({super.key});
 
   @override
@@ -10,14 +15,20 @@ class DetailsPage extends StatefulWidget {
 
 class _DetailsPageState extends State<DetailsPage> {
   bool showMore=false;
+ 
 
   @override
   Widget build(BuildContext context) {
+    final PlantsModel plant = ModalRoute.of(context)!.settings.arguments as PlantsModel;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: KPrimaryColor,
-          title: const Text("Home"),
+          title:Consumer<Cart>(
+          builder:(context,testt,child){
+              return Text('${testt.myName}');
+            }),
+          //const Text("Home"),
           actions: [
             Row(
               children: [
@@ -53,12 +64,13 @@ class _DetailsPageState extends State<DetailsPage> {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              Image.asset('assets/images/2.png'),
+              Image.asset(plant!.image),
               SizedBox(
                 height: 12,
               ),
               Text(
-                '\$ 122',
+                '\$' '${plant.price}',
+              //  '\$ 122',
                 style: TextStyle(fontSize: 20),
               ),
               SizedBox(
@@ -86,7 +98,7 @@ class _DetailsPageState extends State<DetailsPage> {
                   Row(
                     children: [
                       Icon(Icons.edit_location),
-                      Text(' Plants Shop',style: TextStyle(fontSize:16),)
+                      Text(plant.location!,style: TextStyle(fontSize:16),)
                     ],
                   )
                 ],
