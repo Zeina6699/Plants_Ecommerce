@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plants_e_commerce/Provider/cart.dart';
+import 'package:plants_e_commerce/screens/checkOut_page.dart';
 import 'package:plants_e_commerce/screens/details_page.dart';
 import 'package:plants_e_commerce/screens/home_page.dart';
 import 'package:plants_e_commerce/screens/login_page.dart';
@@ -27,6 +28,7 @@ class PlantsApp extends StatelessWidget {
           '/register':(context)=>const RegisterPage(),
           '/home':(context)=>HomePage(),
           '/details':(context)=> DetailsPage(),
+           '/checked':(context)=> CheckoutPage()
         },
       debugShowCheckedModeBanner: false, 
          initialRoute: '/home'),

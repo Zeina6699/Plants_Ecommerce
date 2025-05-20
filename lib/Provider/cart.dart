@@ -9,8 +9,17 @@ class Cart with ChangeNotifier{
 
   add(PlantsModel plant){
     selectedPlants.add(plant);
-    price+=plant.price.floor();
+    price+=plant.price.round();
     notifyListeners();
+  }
+  
+ void remove(PlantsModel plant) {
+    if (selectedPlants.contains(plant)) {
+      selectedPlants.remove(plant);
+      price -= plant.price.round();
+      price = price >= 0 ? price : 0; // تأكد من أن السعر لا يصبح سالبًا
+      notifyListeners();
+    }
   }
 
 }

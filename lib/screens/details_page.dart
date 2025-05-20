@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:plants_e_commerce/Models/plants_model.dart';
-import 'package:plants_e_commerce/Provider/cart.dart';
 import 'package:plants_e_commerce/constants.dart';
+import 'package:plants_e_commerce/widgets/custom_appBar.dart';
 import 'package:provider/provider.dart';
 
 class DetailsPage extends StatefulWidget {
 
  
-   DetailsPage({super.key});
+ const  DetailsPage({super.key});
 
   @override
   State<DetailsPage> createState() => _DetailsPageState();
@@ -15,7 +15,6 @@ class DetailsPage extends StatefulWidget {
 
 class _DetailsPageState extends State<DetailsPage> {
   bool showMore=false;
- 
 
   @override
   Widget build(BuildContext context) {
@@ -24,43 +23,8 @@ class _DetailsPageState extends State<DetailsPage> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: KPrimaryColor,
-          title:Consumer<Cart>(
-          builder:(context,testt,child){
-              return Text('${testt.myName}');
-            }),
-          //const Text("Home"),
-          actions: [
-            Row(
-              children: [
-                //الستاك مشان نخلي ال8 فوق الايقونة
-                Stack(children: [
-                  //الكونتستر مشان نخلي
-                  //شكلو دائري
-                  Positioned(
-                    bottom: 22,
-                    right: 30,
-                    child: Container(
-                      alignment: Alignment.center,
-                      padding: const EdgeInsets.all(4),
-                      decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Color.fromARGB(211, 164, 255, 193)),
-                      child: const Center(
-                          child: Text('8', style: TextStyle(fontSize: 18))),
-                    ),
-                  ),
-                  IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.add_shopping_cart))
-                ]),
-                const Padding(
-                  padding: EdgeInsets.only(right: 10),
-                  child: Text('\$ 9999', style: TextStyle(fontSize: 18)),
-                ),
-              ],
-            ),
-          ],
-        ),
+          title:const Text("Details"),
+         actions: const[CustomAppbar()]),
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -70,8 +34,8 @@ class _DetailsPageState extends State<DetailsPage> {
               ),
               Text(
                 '\$' '${plant.price}',
+                style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20)
               //  '\$ 122',
-                style: TextStyle(fontSize: 20),
               ),
               SizedBox(
                 height: 12,

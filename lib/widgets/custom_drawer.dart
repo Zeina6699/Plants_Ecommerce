@@ -15,8 +15,8 @@ class CustomDrawer extends StatelessWidget {
         children:[ Column(
           children: [
             CustomUserDrawerHeader(),
-            CustomListTile(onTap: (){},icon: Icons.home,title:'Home' ,),
-            CustomListTile(onTap: (){} ,icon:Icons.add_shopping_cart,title: 'My Products',),
+            CustomListTile(onTap: (){Navigator.pushNamed(context,'/home');},icon: Icons.home,title:'Home' ,),
+            CustomListTile(onTap: (){Navigator.pushNamed(context,'/checked');} ,icon:Icons.add_shopping_cart,title: 'My Products',),
             CustomListTile(onTap:(){},icon: Icons.help_center,title: 'About',),
             CustomListTile(onTap: (){},icon: Icons.exit_to_app,title: 'Log Out',) ],
              ),
